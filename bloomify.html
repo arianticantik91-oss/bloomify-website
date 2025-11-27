@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bloomify</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Font - Poppins Only -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* FORCE POPPINS FONT EVERYWHERE */
+        * {
+            font-family: 'Poppins', sans-serif ;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .btn,
+        .form-control {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        /* PINK COLOR OVERRIDES - FORCING PINK COLORS */
+        :root {
+            --primary: #FF97B7 !important;
+            --secondary: #E05780 !important;
+            --light: #FADDE1 !important;
+            --dark: #FF7AA2 !important;
+        }
+
+        /* FORCE PINK BACKGROUNDS - ONLY NAVBAR */
+        .nav-bar {
+            background: #E05780 !important;
+        }
+
+        .page-header.overlay-bottom {
+            background: #ffffff !important; /* Changed to white */
+        }
+
+        .footer.overlay-top {
+            background: #ffffff !important; /* Changed to white */
+        }
+
+        /* FORCE PINK BUTTONS */
+        .btn-primary {
+            background-color: #FF97B7 !important;
+            border-color: #FF97B7 !important;
+            color: #000 !important;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF7AA2 !important;
+            border-color: #FF7AA2 !important;
+        }
+
+        /* FORCE PINK TEXT */
+        .text-primary {
+            color: #FF97B7 !important;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #E05780 !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #FADDE1 !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover,
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: #FF97B7 !important;
+        }
+
+        /* FORCE PINK ICONS */
+        .fa-map-marker-alt, 
+        .fa-phone-alt, 
+        .fa-envelope {
+            color: #FF97B7 !important;
+        }
+
+        /* Custom pink styles */
+        .back-to-top {
+            background-color: #FF97B7 !important;
+            border-color: #FF97B7 !important;
+        }
+
+        .section-title::after {
+            background: #FF97B7 !important;
+        }
+
+        /* Center the section title */
+        .section-title {
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .section-title h4,
+        .section-title h1 {
+            text-align: center !important;
+            width: 100% !important;
+        }
+
+        /* Updated text styles */
+        .follow-us-text {
+            color: #666666 !important; /* Changed to dark gray */
+            font-style: italic;
+        }
+
+        .newsletter-text {
+            color: #666666 !important; /* Changed to dark gray */
+            font-style: italic;
+        }
+
+        /* Page header text colors */
+        .page-header h1,
+        .page-header p,
+        .page-header a {
+            color: #E05780 !important; /* Pink text on white background */
+        }
+
+        /* Override any Bootstrap defaults */
+        .bg-dark {
+            background-color: #E05780 !important;
+        }
+
+        .border-light {
+            border-color: #FADDE1 !important;
+        }
+
+        /* Custom section title spacing */
+        .section-title {
+            position: relative;
+            padding: 115px 0 35px 0;
+        }
+
+        .section-title::after {
+            position: absolute;
+            content: "";
+            width: 2px;
+            height: 100px;
+            top: 0;
+            left: 50%;
+            margin-left: 1px;
+        }
+
+        /* Remove overlay effects */
+        .overlay-bottom::after {
+            display: none !important;
+        }
+
+        .overlay-top::before {
+            display: none !important;
+        }
+
+        /* Footer text colors */
+        .footer p:not(.follow-us-text):not(.newsletter-text) {
+            color: #666666 !important;
+        }
+
+        .footer h4, .footer h6 {
+            color: #E05780 !important;
+        }
+
+        /* Bottom footer section */
+        .footer .container-fluid.text-center {
+            background: #f8f9fa !important;
+            color: #ffc1f5 !important;
+        }
+
+        .footer .container-fluid.text-center a {
+            color: #E05780 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0 nav-bar" style="background: #E05780 !important;">
+        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+                <h1 class="m-0 display-4 text-uppercase text-white">Bloomify</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto p-4">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Service</a>
+                    <a href="menu.html" class="nav-item nav-link">Menu</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="reservation.html" class="dropdown-item">Reservation</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom" style="background: #ffffff !important;">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-uppercase" style="color: #E05780 !important;">Contact</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0"><a href="" style="color: #E05780 !important;">Home</a></p>
+                <p class="m-0 px-2" style="color: #E05780 !important;">/</p>
+                <p class="m-0" style="color: #E05780 !important;">Contact</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="section-title">
+                <h4 class="text-primary text-uppercase text-center" style="letter-spacing: 5px;">Contact Us</h4>
+                <h1 class="display-4 text-center">Feel Free To Contact</h1>
+            </div>
+            <div class="row px-3 pb-2">
+                <div class="col-sm-4 text-center mb-3">
+                    <i class="fa fa-2x fa-map-marker-alt mb-3 text-primary"></i>
+                    <h4 class="font-weight-bold">Address</h4>
+                    <p>Ubud Street, Gianyar, Bali</p>
+                </div>
+                <div class="col-sm-4 text-center mb-3">
+                    <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
+                    <h4 class="font-weight-bold">Phone</h4>
+                    <p>+62 8123 4567 8912</p>
+                </div>
+                <div class="col-sm-4 text-center mb-3">
+                    <i class="far fa-2x fa-envelope mb-3 text-primary"></i>
+                    <h4 class="font-weight-bold">Email</h4>
+                    <p>info@bloomify@gmail.com</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 pb-5">
+                    <iframe style="width: 100%; height: 443px;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1263160.5055297192!2d115.25653190538313!3d-8.50694754032807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23999f0a2f1b3%3A0x6485b54133a2d87d!2sUbud%2C%20Bali%2C%20Indonesia!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd" width: 100%; height: 443px; style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="col-md-6 pb-5">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <div class="control-group">
+                                <input type="text" class="form-control bg-transparent p-4" id="name" placeholder="Your Name"
+                                    required="required" data-validation-required-message="Please enter your name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="email" class="form-control bg-transparent p-4" id="email" placeholder="Your Email"
+                                    required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" class="form-control bg-transparent p-4" id="subject" placeholder="Subject"
+                                    required="required" data-validation-required-message="Please enter a subject" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <textarea class="form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Message"
+                                    required="required"
+                                    data-validation-required-message="Please enter your message"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary font-weight-bold py-3 px-5" type="submit" id="sendMessageButton">Send
+                                    Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top" style="background: #ffffff !important;">
+        <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase mb-4" style="letter-spacing: 3px; color: #E05780 !important;">Get In Touch</h4>
+                <p style="color: #666666 !important;"><i class="fa fa-map-marker-alt mr-2" style="color: #FF97B7 !important;"></i>Ubud Street, Gianyar, Bali</p>
+                <p style="color: #666666 !important;"><i class="fa fa-phone-alt mr-2" style="color: #FF97B7 !important;"></i>+62 8123 4567 8912</p>
+                <p class="m-0" style="color: #666666 !important;"><i class="fa fa-envelope mr-2" style="color: #FF97B7 !important;"></i>info@bloomify.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase mb-4" style="letter-spacing: 3px; color: #E05780 !important;">Follow Us</h4>
+                <p class="follow-us-text">Join our pink community for the latest updates and floral inspiration!</p>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-lg btn-outline-secondary btn-lg-square mr-2" href="#" style="border-color: #E05780 !important; color: #E05780 !important;"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-outline-secondary btn-lg-square mr-2" href="#" style="border-color: #E05780 !important; color: #E05780 !important;"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-outline-secondary btn-lg-square mr-2" href="#" style="border-color: #E05780 !important; color: #E05780 !important;"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-lg btn-outline-secondary btn-lg-square" href="#" style="border-color: #E05780 !important; color: #E05780 !important;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase mb-4" style="letter-spacing: 3px; color: #E05780 !important;">Open Hours</h4>
+                <div>
+                    <h6 class="text-uppercase" style="color: #E05780 !important;">Monday - Friday</h6>
+                    <p style="color: #666666 !important;">8.00 AM - 9.00 PM</p>
+                    <h6 class="text-uppercase" style="color: #E05780 !important;">Saturday - Sunday</h6>
+                    <p style="color: #666666 !important;">2.00 PM - 8.00 PM</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase mb-4" style="letter-spacing: 3px; color: #E05780 !important;">Newsletter</h4>
+                <p class="newsletter-text">Subscribe to get exclusive pink deals and flower care tips!</p>
+                <div class="w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px; border-color: #E05780 !important;" placeholder="Your Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: #dee2e6 !important; background: #f8f9fa !important; color: #666666 !important;">
+            <p class="mb-2"> &copy; <a class="font-weight-bold" href="#" style="color: #E05780 !important;">Bloomify</a>. All Rights Reserved.</p>
+            <p class="m-0">Ahaayy <a class="font-weight-bold" href="https://bloomify.com" style="color: #E05780 !important;">bloommyy</a> jiijijijji <a href="https://bloomify.com" target="_blank" style="color: #E05780 !important;">bloommiiy</a></p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" style="background-color: #FF97B7 !important; border-color: #FF97B7 !important;"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Simple animation for back to top button
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > 100) {
+                    $('.back-to-top').fadeIn();
+                } else {
+                    $('.back-to-top').fadeOut();
+                }
+            });
+            
+            $('.back-to-top').click(function(){
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
