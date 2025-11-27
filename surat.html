@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloomify - Surat Ucapan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #ff7aa2;
+            --light-pink: #ffd6e0;
+            --dark-pink: #e0527a;
+            --soft-pink: #fff0f5;
+            --pastel-pink: #ffb6c1;
+            --rose-pink: #ff69b4;
+            --blush-pink: #f8c8dc;
+            --text-dark: #4a4a4a;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--rose-pink) 100%);
+            box-shadow: 0 4px 12px rgba(255, 122, 162, 0.2);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .navbar-brand i {
+            color: white;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin: 0 5px;
+            border-radius: 20px;
+            padding: 8px 16px !important;
+            text-align: center;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--rose-pink) 100%);
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 122, 162, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 122, 162, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--blush-pink) 100%);
+            border: none;
+            border-radius: 30px;
+            padding: 15px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            color: var(--text-dark);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 182, 193, 0.4);
+            background: linear-gradient(135deg, var(--blush-pink) 0%, var(--pastel-pink) 100%);
+            color: var(--text-dark);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-pink);
+            border-color: var(--primary-pink);
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary:hover, .btn-outline-primary.active {
+            background-color: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--rose-pink) 100%);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 20px 25px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .preview-container {
+            background-color: var(--soft-pink);
+            border: 2px dashed var(--light-pink);
+            border-radius: 15px;
+            padding: 25px;
+            min-height: 250px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5a5a5a;
+        }
+        
+        .bali-script {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2em;
+        }
+        
+        .language-selector {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .language-flag {
+            width: 24px;
+            height: 16px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--rose-pink) 100%);
+            color: white;
+            margin-top: 50px;
+            padding: 30px 0;
+        }
+        
+        .template-option {
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .template-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 122, 162, 0.2);
+        }
+        
+        .template-option.selected {
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .template-icon {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+        
+        .form-control {
+            border-radius: 12px;
+            padding: 12px 15px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 0.2rem rgba(255, 122, 162, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary-pink);
+            border-color: var(--primary-pink);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255, 122, 162, 0.1) 0%, rgba(255, 214, 224, 0.2) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            color: var(--primary-pink);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .hero-subtitle {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .preview-title {
+            color: var(--primary-pink);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .language-btn {
+            padding: 10px 20px;
+        }
+        
+        .save-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        
+        .preview-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 25px 20px;
+            }
+            
+            .language-btn {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            
+            .template-option {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-spa me-2"></i>Bloomify
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="surat.html">Surat Ucapan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonial.html">Testimoni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">Surat Ucapan Personal</h1>
+            <p class="hero-subtitle">Tambahkan sentuhan personal pada buket bunga Anda dengan pesan khusus. Pilih bahasa, template, dan lihat pratinjau sebelum mengirim.</p>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <div class="row align-items-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5 class="mb-0" style="color: var(--primary-pink);">Pilih Bahasa:</h5>
+                </div>
+                <div class="col-md-8">
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-outline-primary active language-btn" id="btn-indonesia">
+                            <img src="https://flagcdn.com/w20/id.png" class="language-flag" alt="Indonesia"> Indonesia
+                        </button>
+                        <button type="button" class="btn btn-outline-primary language-btn" id="btn-bali">
+                            <img src="https://flagcdn.com/w20/id.png" class="language-flag" alt="Bali"> Bali
+                        </button>
+                        <button type="button" class="btn btn-outline-primary language-btn" id="btn-inggris">
+                            <img src="https://flagcdn.com/w20/gb.png" class="language-flag" alt="English"> English
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Form Section -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-pen-fancy me-2"></i>Form Surat Ucapan
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="messageForm">
+                            <div class="mb-4">
+                                <label for="senderName" class="form-label fw-semibold">Nama Pengirim</label>
+                                <input type="text" class="form-control" id="senderName" placeholder="Masukkan nama pengirim">
+                            </div>
+                            <div class="mb-4">
+                                <label for="recipientName" class="form-label fw-semibold">Nama Penerima</label>
+                                <input type="text" class="form-control" id="recipientName" placeholder="Masukkan nama penerima">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-semibold">Pesan Ucapan</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Tulis pesan ucapan Anda di sini"></textarea>
+                            </div>
+                            
+                            <!-- Template Options -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Template Ucapan (Opsional)</label>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="card template-option" data-template="birthday">
+                                            <div class="card-body text-center p-3">
+                                                <div class="template-icon">
+                                                    <i class="fas fa-birthday-cake"></i>
+                                                </div>
+                                                <h6>Ulang Tahun</h6>
+                                                <small class="text-muted">Selamat ulang tahun</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card template-option" data-template="anniversary">
+                                            <div class="card-body text-center p-3">
+                                                <div class="template-icon">
+                                                    <i class="fas fa-heart"></i>
+                                                </div>
+                                                <h6>Hari Jadi</h6>
+                                                <small class="text-muted">Selamat hari jadi</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card template-option" data-template="condolence">
+                                            <div class="card-body text-center p-3">
+                                                <div class="template-icon">
+                                                    <i class="fas fa-hand-holding-heart"></i>
+                                                </div>
+                                                <h6>Duka Cita</h6>
+                                                <small class="text-muted">Turut berduka cita</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card template-option" data-template="getwell">
+                                            <div class="card-body text-center p-3">
+                                                <div class="template-icon">
+                                                    <i class="fas fa-plus-square"></i>
+                                                </div>
+                                                <h6>Cepat Sembuh</h6>
+                                                <small class="text-muted">Semoga lekas sembuh</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Aksara Bali Option -->
+                            <div class="mb-4 form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="baliScript">
+                                <label class="form-check-label" for="baliScript">Tampilkan dalam Aksara Bali</label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-primary preview-btn" id="previewBtn">
+                                    <i class="fas fa-eye me-2"></i>Lihat Pratinjau
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Preview Section -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-file-alt me-2"></i>Pratinjau Pesan
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="preview-container text-center" id="previewContent">
+                            <p class="text-muted m-0">Pratinjau pesan Anda akan muncul di sini</p>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-success save-btn" id="saveBtn" disabled>
+                                    <i class="fas fa-save me-2"></i>Simpan & Lanjut Checkout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-spa me-2"></i>Bloomify</h5>
+                    <p>Menyampaikan perasaan melalui keindahan bunga.</p>
+                    <div class="d-flex mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Kontak</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Ubud, Gianyar, Bali</p>
+                    <p><i class="fas fa-phone me-2"></i>+62 8123 4567 8912</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@bloomify.com</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Jam Operasional</h5>
+                    <p>Senin - Jumat: 8:00 - 20:00</p>
+                    <p>Sabtu - Minggu: 9:00 - 18:00</p>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="text-center">
+                <p class="mb-0">&copy; Bloomify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Language data
+        const languageData = {
+            indonesia: {
+                senderName: "Nama Pengirim",
+                recipientName: "Nama Penerima",
+                message: "Pesan Ucapan",
+                birthday: "Ulang Tahun",
+                anniversary: "Hari Jadi",
+                condolence: "Duka Cita",
+                getwell: "Cepat Sembuh",
+                baliScript: "Tampilkan dalam Aksara Bali",
+                preview: "Lihat Pratinjau",
+                save: "Simpan & Lanjut Checkout",
+                previewTitle: "Pratinjau Pesan",
+                previewPlaceholder: "Pratinjau pesan Anda akan muncul di sini",
+                birthdayTemplate: "Selamat ulang tahun! Semoga panjang umur, sehat selalu, dan dilimpahkan kebahagiaan.",
+                anniversaryTemplate: "Selamat hari jadi! Semoga hubungan kalian semakin harmonis dan penuh kasih sayang.",
+                condolenceTemplate: "Turut berduka cita. Semoga almarhum/almarhumah diterima di sisi-Nya dan keluarga yang ditinggalkan diberi ketabahan.",
+                getwellTemplate: "Semoga lekas sembuh. Tetap semangat dan jaga kesehatan selalu."
+            },
+            bali: {
+                senderName: "Adan Pengirim",
+                recipientName: "Adan Penerima",
+                message: "Pesen Ucapan",
+                birthday: "Rahinan Otonan",
+                anniversary: "Rahinan Pawiwahan",
+                condolence: "Sesangkan",
+                getwell: "Maju Sembuh",
+                baliScript: "Tampilang ring Aksara Bali",
+                preview: "Pratinjau Pesen",
+                save: "Simpen & Lanturang Checkout",
+                previewTitle: "Pratinjau Pesen",
+                previewPlaceholder: "Pratinjau pesen ragane pacang kacingak ring riki",
+                birthdayTemplate: "Rahajeng rahina otonan! Moga daging ayu, sehat salanturan, tur kapicaang karahayuan.",
+                anniversaryTemplate: "Rahajeng rahina pawiwahan! Moga paiketan ragane luwih harmonis tur pinih sayang.",
+                condolenceTemplate: "Turut sesangkan. Moga almarhum/almarhumah katampi ring sisi Ida Sang Hyang Widhi tur kulawarga sane katunyang kapicaang katabahan.",
+                getwellTemplate: "Moga maju sembuh. Tetep semangat tur jaga kesehatan salanturan."
+            },
+            english: {
+                senderName: "Sender Name",
+                recipientName: "Recipient Name",
+                message: "Greeting Message",
+                birthday: "Birthday",
+                anniversary: "Anniversary",
+                condolence: "Condolence",
+                getwell: "Get Well Soon",
+                baliScript: "Show in Balinese Script",
+                preview: "Preview Message",
+                save: "Save & Continue to Checkout",
+                previewTitle: "Preview Message",
+                previewPlaceholder: "Your message preview will appear here",
+                birthdayTemplate: "Happy birthday! Wishing you a long life, good health, and abundant happiness.",
+                anniversaryTemplate: "Happy anniversary! May your relationship grow more harmonious and full of love.",
+                condolenceTemplate: "Our deepest condolences. May the deceased be accepted by His side and the family left behind be given strength.",
+                getwellTemplate: "Get well soon. Stay positive and take care of your health always."
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'indonesia';
+        let selectedTemplate = null;
+
+        // DOM Elements
+        const btnIndonesia = document.getElementById('btn-indonesia');
+        const btnBali = document.getElementById('btn-bali');
+        const btnInggris = document.getElementById('btn-inggris');
+        const senderNameLabel = document.querySelector('label[for="senderName"]');
+        const recipientNameLabel = document.querySelector('label[for="recipientName"]');
+        const messageLabel = document.querySelector('label[for="message"]');
+        const templateLabel = document.querySelector('.form-label.fw-semibold');
+        const baliScriptLabel = document.querySelector('label[for="baliScript"]');
+        const previewBtn = document.getElementById('previewBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const previewContent = document.getElementById('previewContent');
+        const senderNameInput = document.getElementById('senderName');
+        const recipientNameInput = document.getElementById('recipientName');
+        const messageInput = document.getElementById('message');
+        const baliScriptCheckbox = document.getElementById('baliScript');
+        const templateOptions = document.querySelectorAll('.template-option');
+
+        // Initialize the page with Indonesian language
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage('indonesia');
+            
+            // Add event listeners for template selection
+            templateOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    templateOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Store the selected template
+                    selectedTemplate = this.getAttribute('data-template');
+                    
+                    // If there's a message in the textarea, append the template
+                    if (messageInput.value.trim() === '') {
+                        messageInput.value = languageData[currentLanguage][selectedTemplate + 'Template'];
+                    }
+                });
+            });
+            
+            // Add event listener for preview button
+            previewBtn.addEventListener('click', generatePreview);
+            
+            // Add event listeners for language buttons
+            btnIndonesia.addEventListener('click', function() {
+                updateLanguage('indonesia');
+                setActiveLanguageButton(this);
+            });
+            
+            btnBali.addEventListener('click', function() {
+                updateLanguage('bali');
+                setActiveLanguageButton(this);
+            });
+            
+            btnInggris.addEventListener('click', function() {
+                updateLanguage('english');
+                setActiveLanguageButton(this);
+            });
+            
+            // Add event listener for save button
+            saveBtn.addEventListener('click', function() {
+                if (senderNameInput.value.trim() && recipientNameInput.value.trim() && messageInput.value.trim()) {
+                    alert('Pesan berhasil disimpan! Anda akan diarahkan ke halaman checkout.');
+                    // In a real application, you would save the data and redirect to checkout
+                    // window.location.href = 'checkout.html';
+                } else {
+                    alert('Harap lengkapi semua field sebelum menyimpan.');
+                }
+            });
+        });
+
+        // Function to update the language of the page
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            const data = languageData[lang];
+            
+            // Update form labels
+            senderNameLabel.textContent = data.senderName;
+            recipientNameLabel.textContent = data.recipientName;
+            messageLabel.textContent = data.message;
+            
+            // Update template labels
+            document.querySelector('[data-template="birthday"] h6').textContent = data.birthday;
+            document.querySelector('[data-template="anniversary"] h6').textContent = data.anniversary;
+            document.querySelector('[data-template="condolence"] h6').textContent = data.condolence;
+            document.querySelector('[data-template="getwell"] h6').textContent = data.getwell;
+            
+            // Update template subtitles
+            document.querySelector('[data-template="birthday"] small').textContent = 
+                lang === 'indonesia' ? 'Selamat ulang tahun' : 
+                lang === 'bali' ? 'Rahajeng otonan' : 'Happy birthday';
+                
+            document.querySelector('[data-template="anniversary"] small').textContent = 
+                lang === 'indonesia' ? 'Selamat hari jadi' : 
+                lang === 'bali' ? 'Rahajeng pawiwahan' : 'Happy anniversary';
+                
+            document.querySelector('[data-template="condolence"] small').textContent = 
+                lang === 'indonesia' ? 'Turut berduka cita' : 
+                lang === 'bali' ? 'Turut sesangkan' : 'Condolences';
+                
+            document.querySelector('[data-template="getwell"] small').textContent = 
+                lang === 'indonesia' ? 'Semoga lekas sembuh' : 
+                lang === 'bali' ? 'Moga maju sembuh' : 'Get well soon';
+            
+            // Update other labels
+            templateLabel.textContent = data.message + ' (Opsional)';
+            baliScriptLabel.textContent = data.baliScript;
+            previewBtn.innerHTML = `<i class="fas fa-eye me-2"></i>${data.preview}`;
+            saveBtn.innerHTML = `<i class="fas fa-save me-2"></i>${data.save}`;
+            document.querySelector('.card-header i.fa-pen-fancy').nextSibling.textContent = data.previewTitle;
+            document.querySelector('.preview-container p').textContent = data.previewPlaceholder;
+            
+            // Update placeholders
+            senderNameInput.placeholder = `Masukkan ${data.senderName.toLowerCase()}`;
+            recipientNameInput.placeholder = `Masukkan ${data.recipientName.toLowerCase()}`;
+            messageInput.placeholder = `Tulis ${data.message.toLowerCase()} di sini`;
+            
+            // Update template content if a template is selected
+            if (selectedTemplate) {
+                const templateText = data[selectedTemplate + 'Template'];
+                if (messageInput.value.trim() === '' || messageInput.value === languageData[getPreviousLanguage()][selectedTemplate + 'Template']) {
+                    messageInput.value = templateText;
+                }
+            }
+        }
+
+        // Function to set active language button
+        function setActiveLanguageButton(activeButton) {
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeButton.classList.add('active');
+        }
+
+        // Function to get the previous language (for template updates)
+        function getPreviousLanguage() {
+            const activeBtn = document.querySelector('.language-btn.active');
+            if (activeBtn.id === 'btn-indonesia') return 'indonesia';
+            if (activeBtn.id === 'btn-bali') return 'bali';
+            if (activeBtn.id === 'btn-inggris') return 'english';
+            return 'indonesia';
+        }
+
+        // Function to generate preview
+        function generatePreview() {
+            const sender = senderNameInput.value.trim();
+            const recipient = recipientNameInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            if (!sender || !recipient || !message) {
+                previewContent.innerHTML = `<p class="text-danger">Harap lengkapi semua field untuk melihat pratinjau.</p>`;
+                saveBtn.disabled = true;
+                return;
+            }
+            
+            let previewHTML = '';
+            
+            if (baliScriptCheckbox.checked) {
+                previewHTML = `
+                    <div class="bali-script">
+                        <p>Ongkara,</p>
+                        <p class="my-4">${recipient},</p>
+                        <p class="my-4">${message}</p>
+                        <p class="mt-4">Sampunang,</p>
+                        <p>${sender}</p>
+                    </div>
+                `;
+            } else {
+                previewHTML = `
+                    <p>Kepada Yth,</p>
+                    <p class="my-4"><strong>${recipient}</strong>,</p>
+                    <p class="my-4">${message}</p>
+                    <p class="mt-4">Hormat kami,</p>
+                    <p><strong>${sender}</strong></p>
+                `;
+            }
+            
+            previewContent.innerHTML = previewHTML;
+            saveBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>
